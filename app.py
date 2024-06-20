@@ -18,6 +18,12 @@ def get_db_connection():
         st.error(f"Error connecting to the database: {err}")
         return None
 
+# Fungsi untuk load data dari IMDb (film)
+@st.cache
+def load_imdb_data():
+    data = pd.read_csv("imdb_usmovie.csv")
+    return data
+
 # Fungsi untuk memuat data dari AdventureWorks (contoh SQL Server)
 @st.cache(allow_output_mutation=True)
 def load_aw_data():
@@ -86,18 +92,24 @@ def load_aw_data():
 st.title('Dashboard Visualisasi Data')
 
 # Sidebar untuk memilih dataset
-dataset = st.sidebar.selectbox('Dataset', ('AdventureWorks',))
+dataset = st.sidebar.selectbox('Dataset', ('AdventureWorks', 'Film'))
 
 # Sidebar untuk memilih tipe chart
 tipe_chart = st.sidebar.selectbox('Tipe Chart', ('Comparison', 'Distribution', 'Composition', 'Relationship'))
 
 # Memuat data sesuai pilihan dataset
-if dataset == 'AdventureWorks':
+if dataset == 'Film':
+    data = load_imdb_data()
+elif dataset == 'AdventureWorks':
     df_donut, df_scatter, df_hist, df_bar = load_aw_data()
 
 # Menampilkan chart sesuai pilihan tipe chart
 if tipe_chart == 'Comparison':
-    if dataset == 'AdventureWorks':
+    if dataset == 'Film':
+        st.subheader('Comparison Bar Chart')
+        fig1 = px.bar(data, x='Name', y='Rating', title='Comparison by Rating')
+        st.plotly_chart(fig1)
+    elif dataset == 'AdventureWorks':
         st.subheader('Comparison Bar Chart')
         fig_bar = px.bar(df_bar, x='City', y='CustomerCount', title='Jumlah Pelanggan Berdasarkan Kota (Top 10)')
         fig_bar.update_layout(
@@ -107,7 +119,11 @@ if tipe_chart == 'Comparison':
         st.plotly_chart(fig_bar)
 
 elif tipe_chart == 'Distribution':
-    if dataset == 'AdventureWorks':
+    if dataset == 'Film':
+        st.subheader('Distribution Scatter Plot')
+        fig2 = px.scatter(data, x='Gross_US', y='Budget', title='Gross US X Budget')
+        st.plotly_chart(fig2)
+    elif dataset == 'AdventureWorks':
         st.subheader('Distribution Histogram')
         fig_hist = px.histogram(df_hist, x='YearlyIncome', nbins=30, title='Distribusi Pendapatan Tahunan Pelanggan')
         fig_hist.update_layout(
@@ -118,14 +134,28 @@ elif tipe_chart == 'Distribution':
         st.plotly_chart(fig_hist)
 
 elif tipe_chart == 'Composition':
-    if dataset == 'AdventureWorks':
+    if dataset == 'Film':
+        st.subheader('Composition Donut Chart')
+        composition = data['Rating'].value_counts(normalize=True) * 100
+        labels = composition.index.tolist()
+        values = composition.values.tolist()
+        fig3 = go.Figure(data=[go.Pie(labels=labels, values=values, hole=0.3)])
+        fig3.update_traces(textposition='inside', textinfo='percent+label')
+        fig3.update_layout(title='Rating Composition')
+        st.plotly_chart(fig3)
+    elif dataset == 'AdventureWorks':
         st.subheader('Composition Donut Chart')
         fig_donut = px.pie(df_donut, values='SalesCount', names='Currency', title='Komposisi Penjualan Berdasarkan Mata Uang',
                         hole=0.3, labels={'SalesCount': 'Jumlah Penjualan', 'Currency': 'Mata Uang'})
         st.plotly_chart(fig_donut)
 
 elif tipe_chart == 'Relationship':
-    if dataset == 'AdventureWorks':
+    if dataset == 'Film':
+        st.subheader('Relationship Scatter Plot')
+        fig4 = px.scatter(data, x='Name', y='Gross_US', hover_data=['Rating', 'Budget', 'Opening_Week', 'Durasi(Menit)'],
+                          title='Name X Gross US')
+        st.plotly_chart(fig4)
+    elif dataset == 'AdventureWorks':
         st.subheader('Relationship Scatter Plot')
         fig_scatter = px.scatter(df_scatter, x='NumberEmployees', y='AnnualSales',
                                  title='Relationship between Number of Employees and Annual Sales',
