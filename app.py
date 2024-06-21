@@ -17,7 +17,7 @@ def load_IMDb_data():
 @st.cache(allow_output_mutation=True)
 def load_aw_data():
     # Koneksi ke database AdventureWorks DATASET
-    mydb = conn()
+    mydb = get_db_connection()
 
     if mydb is not None:
         try:
