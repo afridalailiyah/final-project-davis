@@ -18,7 +18,7 @@ def get_db_connection():
         st.error(f"Error connecting to the database: {err}")
         return None
 
-# Fungsi untuk load data dari IMDb (film)
+# Fungsi untuk load data dari IMDb (IMDB)
 @st.cache
 def load_imdb_data():
     data = pd.read_csv("imdb_usmovie.csv")
@@ -92,20 +92,21 @@ def load_aw_data():
 st.title('Dashboard Visualisasi Data')
 
 # Sidebar untuk memilih dataset
-dataset = st.sidebar.selectbox('Dataset', ('AdventureWorks', 'Film'))
+st.sidebar.title('Please Filter Here ')
+dataset = st.sidebar.selectbox('Select Category', ('AdventureWorks', 'IMDB'))
 
 # Sidebar untuk memilih tipe chart
-tipe_chart = st.sidebar.selectbox('Tipe Chart', ('Comparison', 'Distribution', 'Composition', 'Relationship'))
+tipe_chart = st.sidebar.selectbox('Type Chart', ('Comparison', 'Distribution', 'Composition', 'Relationship'))
 
 # Memuat data sesuai pilihan dataset
-if dataset == 'Film':
+if dataset == 'IMDB':
     data = load_imdb_data()
 elif dataset == 'AdventureWorks':
     df_donut, df_scatter, df_hist, df_bar = load_aw_data()
 
 # Menampilkan chart sesuai pilihan tipe chart
 if tipe_chart == 'Comparison':
-    if dataset == 'Film':
+    if dataset == 'IMDB':
         st.subheader('Comparison Bar Chart')
         fig1 = px.bar(data, x='Name', y='Rating', title='Comparison by Rating')
         st.plotly_chart(fig1)
@@ -119,7 +120,7 @@ if tipe_chart == 'Comparison':
         st.plotly_chart(fig_bar)
 
 elif tipe_chart == 'Distribution':
-    if dataset == 'Film':
+    if dataset == 'IMDB':
         st.subheader('Distribution Scatter Plot')
         fig2 = px.scatter(data, x='Gross_US', y='Budget', title='Gross US X Budget')
         st.plotly_chart(fig2)
@@ -134,7 +135,7 @@ elif tipe_chart == 'Distribution':
         st.plotly_chart(fig_hist)
 
 elif tipe_chart == 'Composition':
-    if dataset == 'Film':
+    if dataset == 'IMDB':
         st.subheader('Composition Donut Chart')
         composition = data['Rating'].value_counts(normalize=True) * 100
         labels = composition.index.tolist()
@@ -150,7 +151,7 @@ elif tipe_chart == 'Composition':
         st.plotly_chart(fig_donut)
 
 elif tipe_chart == 'Relationship':
-    if dataset == 'Film':
+    if dataset == 'IMDB':
         st.subheader('Relationship Scatter Plot')
         fig4 = px.scatter(data, x='Name', y='Gross_US', hover_data=['Rating', 'Budget', 'Opening_Week', 'Durasi(Menit)'],
                           title='Name X Gross US')
