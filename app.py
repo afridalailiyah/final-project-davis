@@ -5,7 +5,18 @@ import plotly.graph_objects as go
 import mysql.connector
 
 # Fungsi untuk mendapatkan koneksi ke database MySQL
-conn = st.connection("mydb", type="sql", autocommit=True)
+def get_db_connection():
+    try:
+        connection = mysql.connector.connect(
+            host="kubela.id",
+            user="davis2024irwan",
+            password="wh451n9m@ch1n3",
+            database="aw"
+        )
+        return connection
+    except mysql.connector.Error as err:
+        st.error(f"Error connecting to the database: {err}")
+        return None
 
 # Fungsi untuk load data dari IMDb (IMDb)
 @st.cache
@@ -17,7 +28,7 @@ def load_IMDb_data():
 @st.cache(allow_output_mutation=True)
 def load_aw_data():
     # Koneksi ke database AdventureWorks DATASET
-    mydb = conn()
+    mydb = get_db_connection()
 
     if mydb is not None:
         try:
