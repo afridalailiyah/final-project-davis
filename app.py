@@ -18,10 +18,10 @@ def get_db_connection():
         st.error(f"Error connecting to the database: {err}")
         return None
 
-# Fungsi untuk load data dari IMDb (IMDB)
+# Fungsi untuk load data dari IMDb (IMDb)
 @st.cache
-def load_imdb_data():
-    data = pd.read_csv("imdb_usmovie.csv")
+def load_IMDb_data():
+    data = pd.read_csv("IMDb_usmovie.csv")
     return data
 
 # Fungsi untuk memuat data dari AdventureWorks DATASET (contoh SQL Server)
@@ -91,15 +91,15 @@ def load_aw_data():
 
 # Sidebar untuk memilih dataset
 st.sidebar.title('Please Filter Here ')
-dataset = st.sidebar.selectbox('Select Category', ('AdventureWorks DATASET', 'IMDB DATASET'))
+dataset = st.sidebar.selectbox('Select Category', ('AdventureWorks DATASET', 'IMDb DATASET'))
 
 # Sidebar untuk memilih tipe chart
 tipe_chart = st.sidebar.selectbox('Type Chart', ('Comparison', 'Distribution', 'Composition', 'Relationship'))
 
 # Memuat data sesuai pilihan dataset
-if dataset == 'IMDB DATASET':
-    data = load_imdb_data()
-    st.title('A Dashboard for an IMDb Dataset')  # Judul untuk dataset IMDB
+if dataset == 'IMDb DATASET':
+    data = load_IMDb_data()
+    st.title('A Dashboard for an IMDb Dataset')  # Judul untuk dataset IMDb
 elif dataset == 'AdventureWorks DATASET':
     df_donut, df_scatter, df_hist, df_bar = load_aw_data()
     st.title('A Dashboard of AdventureWorks  Dataset')  # Judul untuk dataset AdventureWorks DATASET
@@ -107,7 +107,7 @@ elif dataset == 'AdventureWorks DATASET':
 
 # Menampilkan chart sesuai pilihan tipe chart
 if tipe_chart == 'Comparison':
-    if dataset == 'IMDB DATASET':
+    if dataset == 'IMDb DATASET':
         st.subheader('Comparison (Bar Chart)')
         fig1 = px.bar(data, x='Name', y='Rating', title='Comparison by Rating')
         st.plotly_chart(fig1)
@@ -116,6 +116,7 @@ if tipe_chart == 'Comparison':
         st.write("📊 The visualization uses a chart to display how ratings vary among various films.")
         st.write("📊 Every bar on the chart represents a film, and the height of each bar shows its respective rating.")
         st.write("📊 The chart helps user to compare the ratings of different films by looking at this chart.")
+        st.write("📊 The data used here is sourced from IMDb scraping, focusing on Adventure US movies category.")
         
     elif dataset == 'AdventureWorks DATASET':
         st.subheader('Comparison (Bar Chart)')
@@ -130,10 +131,17 @@ if tipe_chart == 'Comparison':
         st.write("📊 This chart displays based on data from the AdventureWorks database.")
 
 elif tipe_chart == 'Distribution':
-    if dataset == 'IMDB DATASET':
+    if dataset == 'IMDb DATASET':
         st.subheader('Distribution (Scatter Plot)')
         fig2 = px.scatter(data, x='Gross_US', y='Budget', title='Gross US X Budget')
         st.plotly_chart(fig2)
+
+        st.write("DESCRIPTION")
+        st.write("📊 The scatter plot visually represents how gross revenue and film budget are related.")
+        st.write("📊 The scatter plot enables visualization of potential patterns or trends between revenue and film budget.")
+        st.write("📊 Each dot on the plot represents a movie. The x-axis shows how much money the movie made in the US, and the y-axis shows how much the movie cost to make.")
+        st.write("📊 The information used is collected through scraping from IMDb.")
+        
     elif dataset == 'AdventureWorks DATASET':
         st.subheader('Distribution (Histogram)')
         fig_hist = px.histogram(df_hist, x='YearlyIncome', nbins=30, title='Distribusi Pendapatan Tahunan Pelanggan')
@@ -144,8 +152,14 @@ elif tipe_chart == 'Distribution':
         )
         st.plotly_chart(fig_hist)
 
+        st.write("DESCRIPTION")
+        st.write("📊 This visualization utilizes a histogram to illustrate the distribution of annual customer incomes.")
+        st.write("📊 This histogram provides a visual representation of how customer incomes are distributed within the observed population.")
+        st.write("📊 This chart displays based on data from the AdventureWorks database.")
+        
+
 elif tipe_chart == 'Composition':
-    if dataset == 'IMDB DATASET':
+    if dataset == 'IMDb DATASET':
         st.subheader('Composition (Donut Chart)')
         composition = data['Rating'].value_counts(normalize=True) * 100
         labels = composition.index.tolist()
@@ -161,7 +175,7 @@ elif tipe_chart == 'Composition':
         st.plotly_chart(fig_donut)
 
 elif tipe_chart == 'Relationship':
-    if dataset == 'IMDB DATASET':
+    if dataset == 'IMDb DATASET':
         st.subheader('Relationship (Scatter Plot)')
         fig4 = px.scatter(data, x='Name', y='Gross_US', hover_data=['Rating', 'Budget', 'Opening_Week', 'Durasi(Menit)'],
                           title='Name X Gross US')
