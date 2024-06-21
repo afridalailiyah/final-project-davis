@@ -195,10 +195,10 @@ elif tipe_chart == 'Relationship':
         st.plotly_chart(fig4)
 
         st.write("DESCRIPTION")
-        st.write("📊 The visualization uses a chart to display how ratings vary among various films.")
-        st.write("📊 Every bar on the chart represents a film, and the height of each bar shows its respective rating.")
-        st.write("📊 The chart helps user to compare the ratings of different films by looking at this chart.")
-        st.write("📊 The data used here is sourced from IMDb scraping, focusing on Adventure US movies category.")
+        st.write("📊 Every data point on the plot represents a film, where the x-axis indicates either the film's title, and the y-axis depicts its gross revenue.")
+        st.write("📊 This visualization aims to illustrate the variation in gross film revenue across different film titles.")
+        st.write("📊 The goal is to analyze how film identity relates to revenue and to identify which films generate the highest earnings..")
+        st.write("📊 The information used is collected through scraping from IMDb.")
         
     elif dataset == 'AdventureWorks DATASET':
         st.subheader('Relationship (Scatter Plot)')
@@ -209,7 +209,7 @@ elif tipe_chart == 'Relationship':
         st.plotly_chart(fig_scatter)
 
         st.write("DESCRIPTION")
-        st.write("📊 The visualization uses a chart to display how ratings vary among various films.")
-        st.write("📊 Every bar on the chart represents a film, and the height of each bar shows its respective rating.")
-        st.write("📊 The chart helps user to compare the ratings of different films by looking at this chart.")
-        st.write("📊 The data used here is sourced from IMDb scraping, focusing on Adventure US movies category.")
+        st.write("📊 The visualization uses a scatter plot to illustrate how the number of employees relates to annual sales.")
+        st.write("📊 On the plot, the x-axis shows the number of employees, and the y-axis shows annual sales figures.")
+        st.write("📊 This scatter plot assists in evaluating whether there is a connection between the number of employees and the company's annual sales performance.")
+        st.write("📊 The information used is collected through scraping from IMDb.")
