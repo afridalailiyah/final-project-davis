@@ -20,11 +20,6 @@ def get_db_connection():
         st.error(f"Error connecting to the database: {err}")
         return None
 
-# Menggunakan koneksi dengan autocommit jika diperlukan
-conn = get_db_connection()
-if conn:
-    conn.autocommit = True
-    
 # Fungsi untuk load data dari IMDb (IMDb)
 @st.cache
 def load_IMDb_data():
