@@ -88,8 +88,6 @@ def load_aw_data():
     else:
         return None, None, None, None
 
-# Streamlit App
-st.title('Dashboard Visualisasi Data')
 
 # Sidebar untuk memilih dataset
 st.sidebar.title('Please Filter Here ')
@@ -101,10 +99,10 @@ tipe_chart = st.sidebar.selectbox('Type Chart', ('Comparison', 'Distribution', '
 # Memuat data sesuai pilihan dataset
 if dataset == 'IMDB':
     data = load_imdb_data()
-    st.title('Dashboard of IMDB Dataset')  # Judul untuk dataset IMDB
+    st.title('A Dashboard for an IMDb Dataset')  # Judul untuk dataset IMDB
 elif dataset == 'AdventureWorks':
     df_donut, df_scatter, df_hist, df_bar = load_aw_data()
-    st.title('Dashboard of AdventureWorks Dataset')  # Judul untuk dataset AdventureWorks
+    st.title('A Dashboard of AdventureWorks Dataset')  # Judul untuk dataset AdventureWorks
 
 
 # Menampilkan chart sesuai pilihan tipe chart
