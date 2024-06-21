@@ -7,17 +7,24 @@ import mysql.connector
 # Fungsi untuk mendapatkan koneksi ke database MySQL
 def get_db_connection():
     try:
+        # Mengambil detail koneksi dari Streamlit secrets
+        db_secrets = st.secrets["mydb"]
         connection = mysql.connector.connect(
-            host="kubela.id",
-            user="davis2024irwan",
-            password="wh451n9m@ch1n3",
-            database="aw"
+            host=db_secrets["host"],
+            user=db_secrets["user"],
+            password=db_secrets["password"],
+            database=db_secrets["database"]
         )
         return connection
     except mysql.connector.Error as err:
         st.error(f"Error connecting to the database: {err}")
         return None
 
+# Menggunakan koneksi dengan autocommit jika diperlukan
+conn = get_db_connection()
+if conn:
+    conn.autocommit = True
+    
 # Fungsi untuk load data dari IMDb (IMDb)
 @st.cache
 def load_IMDb_data():
