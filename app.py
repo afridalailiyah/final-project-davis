@@ -21,7 +21,7 @@ def get_db_connection():
 # Fungsi untuk load data dari IMDb (IMDb)
 @st.cache
 def load_IMDb_data():
-    data = pd.read_csv("IMDb_usmovie.csv")
+    data = pd.read_csv("imdb_usmovie.csv")
     return data
 
 # Fungsi untuk memuat data dari AdventureWorks DATASET (contoh SQL Server)
