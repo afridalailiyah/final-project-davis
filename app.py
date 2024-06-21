@@ -91,7 +91,7 @@ def load_aw_data():
 
 # Sidebar untuk memilih dataset
 st.sidebar.title('Please Filter Here ')
-dataset = st.sidebar.selectbox('Select Category', ('AdventureWorks DATASET DATASET', 'IMDB DATASET'))
+dataset = st.sidebar.selectbox('Select Category', ('AdventureWorks DATASET', 'IMDB DATASET'))
 
 # Sidebar untuk memilih tipe chart
 tipe_chart = st.sidebar.selectbox('Type Chart', ('Comparison', 'Distribution', 'Composition', 'Relationship'))
@@ -102,7 +102,7 @@ if dataset == 'IMDB DATASET':
     st.title('A Dashboard for an IMDb Dataset')  # Judul untuk dataset IMDB
 elif dataset == 'AdventureWorks DATASET':
     df_donut, df_scatter, df_hist, df_bar = load_aw_data()
-    st.title('A Dashboard of AdventureWorks DATASET Dataset')  # Judul untuk dataset AdventureWorks DATASET
+    st.title('A Dashboard of AdventureWorks  Dataset')  # Judul untuk dataset AdventureWorks DATASET
 
 
 # Menampilkan chart sesuai pilihan tipe chart
