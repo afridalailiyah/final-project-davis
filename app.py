@@ -168,11 +168,24 @@ elif tipe_chart == 'Composition':
         fig3.update_traces(textposition='inside', textinfo='percent+label')
         fig3.update_layout(title='Rating Composition')
         st.plotly_chart(fig3)
+
+        st.write("DESCRIPTION")
+        st.write("📊 The visualization uses a donut chart to show the breakdown of ratings across different categories.")
+        st.write("📊 This chart allows viewers to assess how many films have high, medium, or low ratings.")
+        st.write("📊 The chart makes it straightforward to comprehend how film ratings are distributed visually.")
+        st.write("📊 The information used is collected through scraping from IMDb.")
+        
     elif dataset == 'AdventureWorks DATASET':
         st.subheader('Composition (Donut Chart)')
         fig_donut = px.pie(df_donut, values='SalesCount', names='Currency', title='Komposisi Penjualan Berdasarkan Mata Uang',
                         hole=0.3, labels={'SalesCount': 'Jumlah Penjualan', 'Currency': 'Mata Uang'})
         st.plotly_chart(fig_donut)
+
+        st.write("DESCRIPTION")
+        st.write("📊 This chart utilizes a donut chart to illustrate the distribution of sales by currency.")
+        st.write("📊 Every section of the donut chart represents a currency, and its size indicates the percentage of total sales conducted in that currency.")
+        st.write("📊 This composition visually shows the proportion of sales attributed to each currency, making it easy to understand the distribution of sales across various currencies at a glance.")
+        st.write("📊 This chart displays based on data from the AdventureWorks database.")
 
 elif tipe_chart == 'Relationship':
     if dataset == 'IMDb DATASET':
@@ -180,6 +193,13 @@ elif tipe_chart == 'Relationship':
         fig4 = px.scatter(data, x='Name', y='Gross_US', hover_data=['Rating', 'Budget', 'Opening_Week', 'Durasi(Menit)'],
                           title='Name X Gross US')
         st.plotly_chart(fig4)
+
+        st.write("DESCRIPTION")
+        st.write("📊 The visualization uses a chart to display how ratings vary among various films.")
+        st.write("📊 Every bar on the chart represents a film, and the height of each bar shows its respective rating.")
+        st.write("📊 The chart helps user to compare the ratings of different films by looking at this chart.")
+        st.write("📊 The data used here is sourced from IMDb scraping, focusing on Adventure US movies category.")
+        
     elif dataset == 'AdventureWorks DATASET':
         st.subheader('Relationship (Scatter Plot)')
         fig_scatter = px.scatter(df_scatter, x='NumberEmployees', y='AnnualSales',
@@ -187,3 +207,9 @@ elif tipe_chart == 'Relationship':
                                  labels={'NumberEmployees': 'Number of Employees', 'AnnualSales': 'Annual Sales'})
         fig_scatter.update_layout(xaxis_title='Number of Employees', yaxis_title='Annual Sales')
         st.plotly_chart(fig_scatter)
+
+        st.write("DESCRIPTION")
+        st.write("📊 The visualization uses a chart to display how ratings vary among various films.")
+        st.write("📊 Every bar on the chart represents a film, and the height of each bar shows its respective rating.")
+        st.write("📊 The chart helps user to compare the ratings of different films by looking at this chart.")
+        st.write("📊 The data used here is sourced from IMDb scraping, focusing on Adventure US movies category.")
