@@ -99,10 +99,10 @@ tipe_chart = st.sidebar.selectbox('Type Chart', ('Comparison', 'Distribution', '
 # Memuat data sesuai pilihan dataset
 if dataset == 'IMDb DATASET':
     data = load_IMDb_data()
-    st.title('A Dashboard for an IMDb Dataset')  # Judul untuk dataset IMDb
+    st.title('A Dashboard for an IMDb Dataset 🎥')  # Judul untuk dataset IMDb
 elif dataset == 'AdventureWorks DATASET':
     df_donut, df_scatter, df_hist, df_bar = load_aw_data()
-    st.title('A Dashboard of AdventureWorks  Dataset')  # Judul untuk dataset AdventureWorks DATASET
+    st.title('A Dashboard of AdventureWorks  Dataset 🚲')  # Judul untuk dataset AdventureWorks DATASET
 
 
 # Menampilkan chart sesuai pilihan tipe chart
