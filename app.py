@@ -110,37 +110,19 @@ if tipe_chart == 'Comparison':
     if dataset == 'IMDB DATASET':
         st.subheader('Comparison (Bar Chart)')
         fig1 = px.bar(data, x='Name', y='Rating', title='Comparison by Rating')
-        fig1.update_layout(
-            annotations=[{
-                'text': 'Visualisasi ini menunjukkan perbandingan rating berdasarkan nama.',
-                'x': 0.5,
-                'y': 1.02,
-                'xanchor': 'center',
-                'yanchor': 'bottom',
-                'showarrow': False
-            }]
-        )
         st.plotly_chart(fig1)
+        
+        st.write("Visualisasi ini menunjukkan perbandingan rating berdasarkan nama.")
         
     elif dataset == 'AdventureWorks DATASET':
         st.subheader('Comparison (Bar Chart)')
         fig_bar = px.bar(df_bar, x='City', y='CustomerCount', title='Jumlah Pelanggan Berdasarkan Kota (Top 10)')
-        fig_bar.update_layout(
-            xaxis_title='Kota',
-            yaxis_title='Jumlah Pelanggan',
-            annotations=[{
-                'text': 'Visualisasi ini menunjukkan jumlah pelanggan berdasarkan kota (10 kota teratas).\n'
-                        'Grafik bar menampilkan jumlah pelanggan untuk 10 kota teratas dalam bentuk batang.\n'
-                        'Setiap batang mewakili satu kota, dan tinggi batang menunjukkan jumlah pelanggan di\n'
-                        'kota tersebut.',
-                'x': 0.5,
-                'y': 1.02,
-                'xanchor': 'center',
-                'yanchor': 'bottom',
-                'showarrow': False
-            }]
-        )
         st.plotly_chart(fig_bar)
+        
+        st.write("Visualisasi ini menunjukkan jumlah pelanggan berdasarkan kota (10 kota teratas).")
+        st.write("Grafik bar menampilkan jumlah pelanggan untuk 10 kota teratas dalam bentuk batang.")
+        st.write("Setiap batang mewakili satu kota, dan tinggi batang menunjukkan jumlah pelanggan di kota tersebut.")
+
 
 elif tipe_chart == 'Distribution':
     if dataset == 'IMDB DATASET':
