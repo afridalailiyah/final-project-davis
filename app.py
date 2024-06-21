@@ -113,9 +113,9 @@ if tipe_chart == 'Comparison':
         st.plotly_chart(fig1)
 
         st.write("DESCRIPTION")
-        st.write("📊 The visualization uses a chart to display how ratings vary among various films.")
-        st.write("📊 Every bar on the chart represents a film, and the height of each bar shows its respective rating.")
-        st.write("📊 The chart helps user to compare the ratings of different films by looking at this chart.")
+        st.write("The visualization uses a chart to display how ratings vary among various films.")
+        st.write("Every bar on the chart represents a film, and the height of each bar shows its respective rating.")
+        st.write("The chart helps user to compare the ratings of different films by looking at this chart.")
         
     elif dataset == 'AdventureWorks DATASET':
         st.subheader('Comparison (Bar Chart)')
@@ -123,11 +123,11 @@ if tipe_chart == 'Comparison':
         st.plotly_chart(fig_bar)
         
         st.write("DESCRIPTION")
-        st.write("📊 The chart displays the number of customers for the top 10 cities. Each bar in the chart represents a city, and its size indicates the number of customers in that city.")
-        st.write("📊 The information is centered on the top ten cities with the most customers.")
-        st.write("📊 The chart facilitates straightforward comparisons of customer volumes across various cities.")
-        st.write("📊 It's categorized as comparison because each bar's height shows how many customers each city has, making it easy to see which cities have more or fewer customers at a glance.")
-        st.write("📊 This chart displays based on data from the AdventureWorks database.")
+        st.write("The chart displays the number of customers for the top 10 cities. Each bar in the chart represents a city, and its size indicates the number of customers in that city.")
+        st.write("The information is centered on the top ten cities with the most customers.")
+        st.write("The chart facilitates straightforward comparisons of customer volumes across various cities.")
+        st.write("It's categorized as comparison because each bar's height shows how many customers each city has, making it easy to see which cities have more or fewer customers at a glance.")
+        st.write("This chart displays based on data from the AdventureWorks database.")
         
 
 
